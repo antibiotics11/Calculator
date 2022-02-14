@@ -84,7 +84,11 @@
 		/** 2의 보수 계산 */
 		public static function get_2s_complement(array $num): array {
 			
+			$arr = array( 1, 0, 0, 0, 0, 0, 0, 0 );
+			$num = complement::get_1s_complement($num);
+			$result = calculation::add($num, $arr);
 			
+			return $result;
 			
 		}
 		
