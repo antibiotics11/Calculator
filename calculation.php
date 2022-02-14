@@ -63,7 +63,7 @@
 			$result = array();
 			$continued = true;
 			
-			for ($i = 0; $i < __MAXBITS__ - 1; $i++) {
+			for ($i = __MAXBITS__ - 1; $i >= 0; $i--) {
 				
 				if ($continued && $num[$i] == 0) {
 					
