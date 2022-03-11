@@ -1,7 +1,8 @@
 <?php
+
 	namespace calculator;
 	
-	if (!defined("__MAXBITS__")) define("__MAXBITS__", 8);
+	if (!defined("__MAXBIT__")) define("__MAXBIT__", 64);
 	
 	
 	class stack {
@@ -10,25 +11,18 @@
 		public $top;
 		public $size;
 		
-		
+		/** 스택 객체 생성시 크기가 입력되어야 함 */
 		public function __construct(int $stack_size) {
 			$this->top = -1;
 			$this->size = $stack_size;
 		}
 		
-		
-		public function get_top(): string {
+		/** top 요소를 반환 */
+		public function peek(): string {
 			
-			if ($this->stack[$this->top] == NULL) {
-				
-				return chr(32);
-				
-			}
-			
-			return $this->stack[$this->top];
+			return ($this->stack[$this->top] == NULL) ? chr(32) : $this->stack[$this->top];
 			
 		}
-		
 		
 		/** 스택이 비어있는지 확인 */
 		public function is_empty(): bool {
@@ -37,7 +31,6 @@
 			
 		}
 		
-		
 		/** 스택이 가득찼는지 확인 */
 		public function is_full(): bool {
 			
@@ -45,8 +38,7 @@
 			
 		}
 		
-		
-		/** 스택에 저장 */
+		/** 스택에 저장하고 top 위치를 반환 */
 		public function push(string $data): int {
 			
 			if ($this->is_empty()) {
@@ -68,8 +60,7 @@
 			return $this->top;
 		}
 		
-		
-		/** 스택에서 제거 */
+		/** 스택에서 제거하고 top 위치를 반환 */
 		public function pop(): int {
 			
 			if ($this->is_empty()) {
@@ -88,73 +79,42 @@
 		
 	};
 	
-	
 	class expression {
 		
 		/** 사용 가능한 문자 목록 */
-		private $characters_allowed = array( "space" => " ", "opening_bracket" => "(", "closing_bracket" => ")" );
-		
+		private $characters_allowed = array( 
+			"space" => " ", 
+			"opening_bracket" => "(", 
+			"closing_bracket" => ")" 
+		);
 		
 		/** 사용 가능한 연산자 목록 */
-		private $operators_allowed = array( "plus" => "+", "minus" => "-", "multiply" => "*", "divide" => "/" );
-		
+		private $operators_allowed = array( 
+			"plus" => "+", 
+			"minus" => "-", 
+			"multiply" => "*", 
+			"divide" => "/" 
+		);
 		
 		/** 연산자 우선순위 */
-		private $precedence = array( "plus" => 1, "minus" => 1, "multiply" => 2, "divide" => 2 );
-		
-		
-		/** 중위표기식 */
-		private $infix = array();
-		
+		private $precedence = array( 
+			"plus" => 1, 
+			"minus" => 1, 
+			"multiply" => 2, 
+			"divide" => 2 
+		);
 		
 		/** 후위표기식 */
 		private $postfix = array();
 		
-		
 		public function __construct(string $expression) {
 			
-			if ($infix = $this->convert_infix($expression)) {
-				
-				$postfix = $this->convert_postfix($this->infix);
-				
-			} else {
-				
-				errors::exception("Expression cannot be converted.");
-				
+			$expression = str_split($expression, 1);
+			if (!$this->convert_postfix($expression)) {
+				errors::exception("Expression could not be converted to postfix");
 			}
 			
 		}
-		
-		
-		/** 입력된 식을 검증하며 중위표기식으로 변환 */
-		public function convert_infix(string $expression): bool {
-			
-			$index = 0;
-			
-			for ($i = 0; $i < strlen($expression); $i++) {
-				$tmp_chr = $expression[$i];
-				
-				if (in_array($tmp_chr, $this->operators_allowed) || in_array($tmp_chr, $this->characters_allowed)) { 
-				
-					if ($tmp_chr == chr(32)) continue;
-					$this->infix[$index] = $tmp_chr;
-					
-				} else if (is_numeric($tmp_chr) && (float)$tmp_chr != 0) {
-					
-					$this->infix[$index] = (string)$tmp_chr;
-				
-				} else {
-					
-					return false;
-					
-				}
-				
-				$index++;
-			}
-			
-			return true;
-		}
-		
 		
 		/** 중위표기식을 후위표기식으로 변환 */
 		public function convert_postfix(array $expression): bool {
@@ -188,10 +148,10 @@
 					
 					while (!$operator->is_empty() && 
 						$this->precedence[array_search($chr, $this->operators_allowed)] <=
-						$this->precedence[array_search($operator->get_top(), $this->operators_allowed)]
+						$this->precedence[array_search($operator->peek(), $this->operators_allowed)]
 					) {
 					
-						$result->push($operator->get_top());
+						$result->push($operator->peek());
 						$operator->pop();
 					
 					}
@@ -206,14 +166,24 @@
 				// 괄호 ")"인 경우	
 				} else if ($chr == chr(41)) {
 					
-					while (!$operator->is_empty() && $operator->get_top() != chr(40)) {
-						$result->push($operator->get_top());
+					while (!$operator->is_empty() && $operator->peek() != chr(40)) {
+						$result->push($operator->peek());
 						$operator->pop();
 					}
 					
-					if ($operator->get_top() == chr(40)) {
+					if ($operator->peek() == chr(40)) {
 						$operator->pop();
 					}
+				
+				// 공백 " "인 경우
+				} else if ($chr == chr(32)) {
+					
+					continue;
+				
+				// 전부 아니면
+				} else {
+					
+					errors::exception("");
 					
 				}
 				
@@ -221,7 +191,7 @@
 			
 			while (!$operator->is_empty()) {
 					
-				$result->push($operator->get_top());
+				$result->push($operator->peek());
 				$operator->pop();
 					
 			}
@@ -231,14 +201,7 @@
 			return true;
 		}
 		
-		
-		/** 중위표기식 배열을 반환 */
-		public function get_infix(): array {
-			return $this->infix;
-		}
-		
-		
-		/** 후위표기식 배열을 반환 */
+		/** 후위표기식을 반환 */
 		public function get_postfix(): array {
 			return $this->postfix;
 		}
