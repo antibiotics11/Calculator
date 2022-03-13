@@ -13,6 +13,8 @@
 
 		private $result;
 		
+		private $postfix = array();
+		
 		private function calculate(array $expression): int {
 			
 			$expression_length = count($expression);
@@ -55,14 +57,20 @@
 		public function __construct(string $expression) {
 			
 			$exp = new expression($expression);
-			$postfix = $exp->get_postfix();
-			$this->result = $this->calculate($postfix);
+			$this->postfix = $exp->get_postfix();
+			$this->result = $this->calculate($this->postfix);
 			
 		}
 		
 		public function get_result(): int {
 			
 			return $this->result;
+			
+		}
+		
+		public function get_postfix(): array {
+			
+			return $this->postfix;
 			
 		}
 		
@@ -79,10 +87,16 @@
 				if (strtolower($expression) == "exit") break;
 				if (empty($expression)) continue;
 				
+				$running_time = new calculator\time();
+				
 				$calculation = new app($expression);
 				$result = $calculation->get_result();
+				$postfix = implode("", $calculation->get_postfix());
 
 				echo chr(32).chr(61).chr(32).$result.PHP_EOL;
+				
+				echo " Postfix Expression: ".$postfix.PHP_EOL;
+				echo " Running Time: ".$running_time->measure()."s".PHP_EOL;
 			}
 			
 		}
