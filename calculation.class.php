@@ -3,6 +3,7 @@
 	
 	const _SRC_ = __DIR__.DIRECTORY_SEPARATOR."classes".DIRECTORY_SEPARATOR;
 	const _EXT_ = ".class.php";
+	const __MAXBIT__ = 8;
 	
 	include_once _SRC_."binary"._EXT_;
 	include_once _SRC_."complement"._EXT_;
