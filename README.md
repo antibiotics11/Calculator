@@ -20,7 +20,3 @@ $ php app-cli.php
 $ composer require gabrielrcouto/php-gui:dev-master
 $ php app-gui.php
 ```
-
-### app-gui.exe
-
-<a href= "https://deneskellner.com/sw/rapidexe">rapidexe</a>로 컴파일한 Windows 애플리케이션
