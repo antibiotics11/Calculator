@@ -1,112 +1,55 @@
 <?php
-
 	namespace calculator;
 	
-	if (!defined("__MAXBIT__")) define("__MAXBIT__", 64);
-	
-	
-	class stack {
-		
-		public $stack = array();
-		public $top;
-		public $size;
-		
-		/** 스택 객체 생성시 크기가 입력되어야 함 */
-		public function __construct(int $stack_size) {
-			$this->top = -1;
-			$this->size = $stack_size;
-		}
-		
-		/** top 요소를 반환 */
-		public function peek(): string {
-			
-			return ($this->stack[$this->top] == NULL) ? chr(32) : $this->stack[$this->top];
-			
-		}
-		
-		/** 스택이 비어있는지 확인 */
-		public function is_empty(): bool {
-			
-			return ($this->top == -1) ? true : false;
-			
-		}
-		
-		/** 스택이 가득찼는지 확인 */
-		public function is_full(): bool {
-			
-			return ($this->top == $this->size - 1) ? true : false;
-			
-		}
-		
-		/** 스택에 저장하고 top 위치를 반환 */
-		public function push(string $data): int {
-			
-			if ($this->is_empty()) {
-				
-				$this->stack[0] = $data;
-				$this->top = 0;
-				
-			} else if ($this->is_full()) {
-				
-				return $this->top;
-				
-			} else {
-				
-				$this->stack[$this->top + 1] = $data;
-				$this->top++;
-				
-			}
-			
-			return $this->top;
-		}
-		
-		/** 스택에서 제거하고 top 위치를 반환 */
-		public function pop(): int {
-			
-			if ($this->is_empty()) {
-				
-				return -1;
-				
-			} else {
-				
-				unset($this->stack[$this->top]);
-				$this->top--;
-				
-			}
-			
-			return $this->top;
-		}
-		
-	};
 	
 	class expression {
 		
-		/** 사용 가능한 문자 목록 */
+		
+		/**
+		 * 사용 가능한 문자 목록
+		 */
 		private $characters_allowed = array( 
+		
 			"space" => " ", 
+            //"comma" => ",",
 			"opening_bracket" => "(", 
 			"closing_bracket" => ")" 
+			
 		);
 		
-		/** 사용 가능한 연산자 목록 */
+		
+		/** 
+		 * 사용 가능한 연산자 목록
+		 */
 		private $operators_allowed = array( 
+		
 			"plus" => "+", 
 			"minus" => "-", 
 			"multiply" => "*", 
 			"divide" => "/" 
+			
 		);
 		
-		/** 연산자 우선순위 */
+		
+		/** 
+         * 우선순위가 높은 연산자일수록 큰 숫자 부여
+         */
 		private $precedence = array( 
+		
 			"plus" => 1, 
 			"minus" => 1, 
 			"multiply" => 2, 
 			"divide" => 2 
+			
 		);
 		
-		/** 후위표기식 */
+
 		private $postfix = array();
+
 		
+		/**
+		 * 
+		 */
 		public function __construct(string $expression) {
 			
 			$expression = str_split($expression, 1);
@@ -116,7 +59,11 @@
 			
 		}
 		
-		/** 중위표기식을 후위표기식으로 변환 */
+		
+		/** 
+		 * 중위표기식 배열을 후위표기식 배열로 변환하는데 성공했으면 true, 아니면 false 반환
+		 * 변환된 후위표기식은 $this->postfix에 저장
+		 */
 		public function convert_postfix(array $expression): bool {
 			
 			$result = new stack(count($expression));
@@ -158,7 +105,7 @@
 					
 					$operator->push($chr);
 					
-				// 괄호 "("인 경우
+				// 괄호 "("인 경우 스택에 삽입
 				} else if ($chr == chr(40)) {
 					
 					$operator->push($chr);
@@ -175,15 +122,15 @@
 						$operator->pop();
 					}
 				
-				// 공백 " "인 경우
+				// 공백 " "인 경우 무시
 				} else if ($chr == chr(32)) {
 					
 					continue;
 				
-				// 전부 아니면
+				// 전부 아니면 오류 발생
 				} else {
 					
-					errors::exception("");
+					errors::exception("Unknown operator or character");
 					
 				}
 				
@@ -201,9 +148,14 @@
 			return true;
 		}
 		
-		/** 후위표기식을 반환 */
+		
+		/**
+		 * 후위표기식 배열을 반환
+		 */
 		public function get_postfix(): array {
+			
 			return $this->postfix;
+			
 		}
 		
 		

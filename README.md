@@ -1,6 +1,13 @@
 # calculator
 
-poor CLI Calculator for studying
+PHP-CLI로 작성된 간단한 사칙연산 계산기입니다.
+정수에 대한 덧셈 및 뺄셈이 가능합니다.
 
-![캡처](https://user-images.githubusercontent.com/75349747/158055190-7a896ee3-d04c-401b-a731-7e4a8f572972.PNG)
-![캡처2](https://user-images.githubusercontent.com/75349747/158055286-91726b28-8344-4eea-a049-dd2aa30a0d15.PNG)
+더 공부해서 빨리 다른 연산도 추가하겠습니다.
+
+## 실행 
+
+```
+php app-cli.php
+```
+
