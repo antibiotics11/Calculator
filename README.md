@@ -1,13 +1,7 @@
 # calculator
 
-PHP-CLI로 작성된 간단한 사칙연산 계산기입니다.
-정수에 대한 덧셈 및 뺄셈이 가능합니다.
+PHP-CLI로 작성된 8-bit 사칙연산 계산기입니다. <br>
+정수에 대한 덧셈 및 뺄셈을 지원합니다.
 
-더 공부해서 빨리 다른 연산도 추가하겠습니다.
-
-## 실행 
-
-```
-php app-cli.php
-```
-
+A 8-bit math calculator written in PHP-CLI. <br>
+You can add and subtract integers.
