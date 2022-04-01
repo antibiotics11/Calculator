@@ -2,7 +2,8 @@
 <?php
 
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-	
+	ini_set("memory_limit", "-1");	
+
 	include_once "calculation.class.php";
 	use calculator\calculation;
 	
