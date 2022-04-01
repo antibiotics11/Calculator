@@ -25,14 +25,12 @@
 		private $result = NULL;
 		
 		
-		/**
-		 * 후위표기식 배열을 순서대로 읽으면서 연산 
-		 */
+		/** 후위표기식 배열을 순서대로 읽으면서 연산 */
 		private function calculate(array $expression): string {
 			
 			$expression_length = count($expression);
 			$stack = new stack($expression_length);
-			
+
 			for ($i = 0; $i < $expression_length; $i++) {
 				
 				if (is_numeric($expression[$i])) {
@@ -53,8 +51,10 @@
 					$result = \calculator\calculation\addition::add($num1, $num2);	
 					
 				} else if ($expression[$i] == chr(45)) {
-					
-					$result = \calculator\calculation\subtraction::subtract($num1, $num2);	
+
+					$result = \calculator\calculation\subtraction::subtract2($num1, $num2);
+
+					//$result = \calculator\calculation\subtraction::subtract1($num1, $num2);	
 					
 				} else if ($expression[$i] == chr(42)) {
 					
@@ -68,16 +68,16 @@
 				
 				// 연산 결과를 10진수를 변환하여 스택에 삽입
 				$stack->push(binary::bin_to_dec($result));
+				
 				// 부호 비트가 음수면 "-" 연산자를 스택에 삽입
-				if ($result[__MAXBIT__]) {
-					$stack->push(chr(45));
-				}
+				if ($result[__MAXBIT__]) $stack->push(chr(45));
 				
 			}
 			
 			$last = $stack->peek();
-			
-			if (gettype($last) !== "integer") {
+
+			// 스택의 마지막 요소가 정수가 아니면 무시하고 제거
+			if (trim(gettype($last)) !== "integer") {
 				$stack->pop();
 				$last = $last.$stack->peek();
 			}
