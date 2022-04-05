@@ -4,8 +4,8 @@
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 	ini_set("memory_limit", "-1");	
 
-	include_once "calculation.class.php";
-	use calculator\calculation;
+	include_once "Calculation.class.php";
+	use calculator\Calculation;
 	
 	class app {
 
@@ -25,7 +25,7 @@
 				if (strtolower($expression) == "exit") break;
 				if (empty($expression)) continue;
 				
-				$calculation = new calculation($expression);
+				$calculation = new Calculation($expression);
 				$result = $calculation->get_result();
 
 				echo chr(32).chr(61).chr(32).$result.PHP_EOL;

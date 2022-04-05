@@ -16,7 +16,7 @@
 	include_once _SRC_."division.calculation"._EXT_;
 	
 	
-	class calculation {
+	class Calculation {
 
 
 		private $postfix = array();

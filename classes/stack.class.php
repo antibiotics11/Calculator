@@ -26,9 +26,7 @@
 		}
 		
 
-		/** 
-		 * 스택의 top 요소를 반환
-		 */
+		/** 스택의 top 요소를 반환 */
 		public function peek(): string {
 			
 			return ($this->stack[$this->top] == NULL) ? chr(32) : $this->stack[$this->top];
@@ -36,9 +34,7 @@
 		}
 		
 
-		/** 
-		 * 스택이 비어있으면 true, 아니면 false 반환
-		 */
+		/** 스택이 비어있으면 true, 아니면 false 반환 */
 		public function is_empty(): bool {
 			
 			return ($this->top == -1) ? true : false;
@@ -46,9 +42,7 @@
 		}
 		
 
-		/** 
-		 * 스택이 가득찼으면 true, 아니면 false 반환
-		 */
+		/** 스택이 가득찼으면 true, 아니면 false 반환 */
 		public function is_full(): bool {
 			
 			return ($this->top == $this->size - 1) ? true : false;
@@ -56,9 +50,7 @@
 		}
 		
 
-		/**
-		 * 스택에 삽입하고 top 위치 반환
-		 */
+		/** 스택에 삽입하고 top 위치 반환 */
 		public function push(string $data): int {
 			
 			if ($this->is_empty()) {
@@ -81,9 +73,7 @@
 		}
 		
 		
-		/** 
-		* 스택의 top 요소 제거하고 새로운 top 위치 반환
-		*/
+		/** 스택의 top 요소 제거하고 새로운 top 위치 반환 */
 		public function pop(): int {
 			
 			if ($this->is_empty()) {

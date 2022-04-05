@@ -1,0 +1,1 @@
+RunHiddenConsole %CD%\app-gui.exe
