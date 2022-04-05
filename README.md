@@ -20,11 +20,11 @@ You can add and subtract integers.
 > composer require gabrielrcouto/php-gui:dev-master
 > php app-gui.php
 ```
-<br>
 OR
 
 ```
 > ./RunGUI.bat
 ```
 
+<br>
 ![screenshot](https://user-images.githubusercontent.com/75349747/161751653-bc84c3f8-1520-4aee-aff2-f5b9a5a61481.png)
