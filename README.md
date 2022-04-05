@@ -9,14 +9,22 @@ You can add and subtract integers.
 ## app-cli.php
 
 ```
-$ php app-cli.php
+> php app-cli.php
 ```
 
-## app-gui.php
+## gui-test/app-gui.php
 
 <a href = "https://github.com/gabrielrcouto/php-gui"> php-gui </a>라이브러리로 구현한 테스트용 GUI 애플리케이션 <br>
 
 ```
-$ composer require gabrielrcouto/php-gui:dev-master
-$ php app-gui.php
+> composer require gabrielrcouto/php-gui:dev-master
+> php app-gui.php
 ```
+<br>
+OR
+
+```
+> ./RunGUI.bat
+```
+
+![screenshot](https://user-images.githubusercontent.com/75349747/161751653-bc84c3f8-1520-4aee-aff2-f5b9a5a61481.png)
