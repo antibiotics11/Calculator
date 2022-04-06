@@ -1,4 +1,4 @@
-# calculator
+# Calculator
 
 PHP-CLI로 작성된 8-Bit 사칙연산 계산기입니다. <br>
 
