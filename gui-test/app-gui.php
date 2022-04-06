@@ -10,7 +10,7 @@
 	use Gui\Application;
 	//use Gui\Components\InputText;
 	use Gui\Components\{Label, Shape, Button};
-	use calculator\{Calculation, stack};
+	use Calculator\{Calculation, Stack};
 	
 	const DEFAULT_FONT = "consolas";
 	const DEFAULT_TITLE = "8-Bit Calculator";
