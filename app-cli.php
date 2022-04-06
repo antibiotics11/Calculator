@@ -5,10 +5,10 @@
 	ini_set("memory_limit", "-1");	
 
 	include_once "Calculation.class.php";
-	use calculator\Calculation;
+	use Calculator\Calculation;
 	
 	class app {
-
+	
 		public static function main(): void {
 			
 			// CLI 환경이 아니면 강제종료
@@ -16,6 +16,9 @@
 				echo " CLI only supported.".PHP_EOL;
 				exit(0);
 			}
+			
+			echo chr(32)."### 8-Bit Calculator by ANTIBIOTICS".PHP_EOL;
+			echo chr(32)."### https://github.com/antibiotics11".PHP_EOL;
 			
 			// "exit" 입력될때까지 무한루프
 			while (true) {
@@ -25,10 +28,20 @@
 				if (strtolower($expression) == "exit") break;
 				if (empty($expression)) continue;
 				
-				$calculation = new Calculation($expression);
-				$result = $calculation->get_result();
-
-				echo chr(32).chr(61).chr(32).$result.PHP_EOL;
+				try {
+				
+					$calculation = new Calculation($expression);
+					$result = $calculation->get_result();
+					
+					echo chr(32).chr(61);
+					echo chr(32).(string)$result.PHP_EOL;
+				
+				} catch (Exception $e) {
+					
+					echo chr(32)."NOTICE: Unknown error occured. Please try again.".PHP_EOL;
+					//echo chr(32).$e.PHP_EOL;
+					
+				}
 				
 			}
 
@@ -39,4 +52,3 @@
 	};
 
 	app::main();
-	

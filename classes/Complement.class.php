@@ -1,19 +1,18 @@
 <?php
-	namespace calculator;
+	namespace Calculator;
 	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
 	
-	
-	class complement {
+	class Complement {
 		
-
+		
+		/** 1의 보수 계산해서 2진 배열로 반환 */
 		public static function get_1s_complement(array $num): array {
 			
 			$result = array();
 			
 			for ($i = __MAXBIT__ - 1; $i >= 0; $i--) {
 				
-				$result[$i] = $num[$i] ? 0 : 1;
-						
+				$result[$i] = $num[$i] ? 0 : 1;	
 				
 			}
 			
@@ -21,6 +20,7 @@
 		}
 		
 		
+		/** 2의 보수 계산해서 2진 배열로 반환 */
 		public static function get_2s_complement(array $num): array {
 			
 			$arr = array();
@@ -31,8 +31,8 @@
 				
 			}
 			
-			$num = complement::get_1s_complement($num);
-			$result = \calculator\calculation\addition::add($num, $arr);
+			$num = \Calculator\Complement::get_1s_complement($num);
+			$result = \Calculator\Calculation\Addition::add($num, $arr);
 			
 			return $result;
 		}

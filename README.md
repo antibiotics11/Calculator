@@ -20,11 +20,6 @@ You can add and subtract integers.
 > composer require gabrielrcouto/php-gui:dev-master
 > php app-gui.php
 ```
-OR
-
-```
-> ./RunGUI.bat
-```
 
 <br>
 

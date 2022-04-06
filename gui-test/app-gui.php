@@ -9,15 +9,11 @@
 	
 	use Gui\Application;
 	//use Gui\Components\InputText;
-	use Gui\Components\Label;
-	use Gui\Components\Shape;
-	use Gui\Components\Button;
-	use calculator\Calculation;
-	use calculator\stack;
+	use Gui\Components\{Label, Shape, Button};
+	use calculator\{Calculation, stack};
 	
 	const DEFAULT_FONT = "consolas";
 	const DEFAULT_TITLE = "8-Bit Calculator";
-	const CURRENT_VERSION = "0.1";
 	const BG_COLOR = "#161b22";
 	const FONT_COLOR = "#c9d1d9";
 	const BTN_COLOR = "#21262d";
@@ -358,7 +354,7 @@
 		// 하단 푸터
 		(new Label) 
 			->setFontSize(13)
-			->setText("Made by ANTIBIOTICS")
+			->setText("https://github.com/antibiotics11")
 			->setFontFamily("consolas")
 			->setFontColor(FONT_COLOR)
 			->setTop(316)

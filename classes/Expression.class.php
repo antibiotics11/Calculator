@@ -1,13 +1,11 @@
 <?php
-	namespace calculator;
+	namespace Calculator;
+	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
 	
-	
-	class expression {
+	class Expression {
 		
 		
-		/**
-		 * 사용 가능한 문자 목록
-		 */
+		/** 사용 가능한 문자 목록 */
 		private $characters_allowed = array( 
 		
 			"space" => " ", 
@@ -18,9 +16,7 @@
 		);
 		
 		
-		/** 
-		 * 사용 가능한 연산자 목록
-		 */
+		/** 사용 가능한 연산자 목록 */
 		private $operators_allowed = array( 
 		
 			"plus" => "+", 
@@ -31,9 +27,7 @@
 		);
 		
 		
-		/** 
-         * 우선순위가 높은 연산자일수록 큰 숫자 부여
-         */
+		/** 우선순위가 높은 연산자일수록 큰 숫자 부여 */
 		private $precedence = array( 
 		
 			"plus" => 1, 
@@ -47,14 +41,11 @@
 		private $postfix = array();
 
 		
-		/**
-		 * 
-		 */
 		public function __construct(string $expression) {
 			
 			$expression = str_split($expression, 1);
 			if (!$this->convert_postfix($expression)) {
-				errors::exception("Expression could not be converted to postfix");
+				\Calculator\Errors::exception("Expression could not be converted to postfix");
 			}
 			
 		}
@@ -66,8 +57,8 @@
 		 */
 		public function convert_postfix(array $expression): bool {
 			
-			$result = new stack(count($expression));
-			$operator = new stack(count($expression));
+			$result = new \Calculator\Stack(count($expression));
+			$operator = new \Calculator\Stack(count($expression));
 			
 			for ($i = 0; $i < count($expression); $i++) {
 				
@@ -130,7 +121,7 @@
 				// 전부 아니면 오류 발생
 				} else {
 					
-					errors::exception("Unknown operator or character");
+					\Calculator\Errors::exception("Unknown operator or character");
 					
 				}
 				
@@ -149,9 +140,7 @@
 		}
 		
 		
-		/**
-		 * 후위표기식 배열을 반환
-		 */
+		/** 후위표기식 배열을 반환 */
 		public function get_postfix(): array {
 			
 			return $this->postfix;

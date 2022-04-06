@@ -1,20 +1,19 @@
 <?php
-	namespace calculator;
+	namespace Calculator;
 	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
 	
-	
-	class binary {
+	class Binary {
 		
 		
-		/** 10진수가 8비트 최댓값을 넘는지 확인 */
+		/** 10진수가 최댓값을 넘는지 확인 */
 		public static function dec_exceed(int $num): bool {
 			
-			return (count(binary::dec_to_bin($num)) <= __MAXBIT__) ? false : true;
+			return (count(\Calculator\Binary::dec_to_bin($num)) <= __MAXBIT__) ? false : true;
 			
 		}
 		
 		
-		/** 2진 배열이 8비트 최댓값을 넘는지 확인 */
+		/** 2진 배열이 최댓값을 넘는지 확인 */
 		public static function bin_exceed(array $num): bool {
 			
 			return (count($num) <= __MAXBIT__) ? false : true;

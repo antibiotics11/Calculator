@@ -1,8 +1,8 @@
 <?php
-	namespace calculator;
+	namespace Calculator;
+	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
 	
-	
-	class stack {
+	class Stack {
 		
 		public $stack = array();
 		
@@ -10,7 +10,7 @@
 		
 		public $size;
 		
-
+		
 		public function __construct(int $stack_size = 0) {
 			
 			$this->top = -1;
@@ -51,7 +51,7 @@
 		
 
 		/** 스택에 삽입하고 top 위치 반환 */
-		public function push(string $data): int {
+		public function push(?string $data): int {
 			
 			if ($this->is_empty()) {
 				
