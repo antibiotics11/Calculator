@@ -1,6 +1,7 @@
+#!/usr/bin/php
 <?php
 
-	include_once "../classes/LogicGate.class.php";
+	include_once "classes/LogicGate.class.php";
 	use Calculator\LogicGate;
 
 	$operations = array(

@@ -1,7 +1,8 @@
+#!/usr/bin/php
 <?php
 
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-	include_once "../Calculation.class.php";
+	include_once "Calculation.class.php";
 
 	echo PHP_EOL."====================== Multiplication Table ======================".PHP_EOL;
 
@@ -12,7 +13,7 @@
 
 			try {
 
-				$calc = new \Calculator\Calculation($expression);
+				$calc = new Calculator\Calculation($expression);
 				$result = $calc->get_result();
 
 			} catch (Exception $e) {

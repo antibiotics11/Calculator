@@ -10,6 +10,7 @@
 	include_once _SRC_."Exception"._EXT_;
 	include_once _SRC_."Expression"._EXT_;
 	include_once _SRC_."Stack"._EXT_;
+	include_once _SRC_."LogicGate"._EXT_;
 	include_once _SRC_."Addition.Calculation"._EXT_;
 	include_once _SRC_."Subtraction.Calculation"._EXT_;
 	include_once _SRC_."Multiplication.Calculation"._EXT_;

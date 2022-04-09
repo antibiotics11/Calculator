@@ -13,10 +13,10 @@
 				
 				$partial_product[$i] = \Calculator\Binary::dec_to_bin(0);
 				
-				for ($j = $i, $k = 0; $j <= __MAXBIT__; $j++, $k++) {
+				for ($j = $i, $k = 0; $j < __MAXBIT__; $j++, $k++) {
 					
 					// 피승수와 승수의 각 비트를 AND 연산하여 결과를 부분곱 배열에 입력
-					$partial_product[$i][$j] = ($num2[$i] && $num1[$k]) ? 1 : 0; 
+					$partial_product[$i][$j] = \Calculator\LogicGate::AND($num2[$i], $num1[$k]);
 					
 				}
 			}
