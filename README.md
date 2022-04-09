@@ -10,12 +10,12 @@ A 8-Bit math calculator written in PHP-CLI. <br>
 > php app-cli.php
 ```
 
-## gui-test/app-gui.php
+## gui/app-gui.php
 
 <a href = "https://github.com/gabrielrcouto/php-gui"> php-gui </a>라이브러리로 구현한 테스트용 GUI 애플리케이션 <br>
 
 ```
-> cd gui-test/
+> cd gui/
 > composer require gabrielrcouto/php-gui:dev-master
 > php app-gui.php
 ```
