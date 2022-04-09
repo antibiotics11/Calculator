@@ -2,9 +2,11 @@
 <?php
 
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-	include_once "Calculation.class.php";
+	include_once "../Calculation.class.php";
 
 	echo PHP_EOL."====================== Multiplication Table ======================".PHP_EOL;
+
+	$start = microtime(true);
 
 	for ($i = 1; $i <= 9; $i++) {
 		for($j = 1; $j <= 9; $j++) {
@@ -32,6 +34,6 @@
 
 	}
 
-	echo PHP_EOL."memory usage: ";
-	echo memory_get_usage(true)." bytes".PHP_EOL;
-	//echo round(memory_get_usage(true) / 1024, 2)." kb".PHP_EOL;
+	echo PHP_EOL;
+	echo " **memory usage: ".memory_get_usage(true)." bytes".PHP_EOL;
+	echo " **execution time: ".round((microtime(true) - $start), 5)." secs".PHP_EOL;
