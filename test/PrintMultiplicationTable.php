@@ -1,7 +1,7 @@
 <?php
 
 	error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-	include_once "Calculation.class.php";
+	include_once "../Calculation.class.php";
 
 	echo PHP_EOL."====================== Multiplication Table ======================".PHP_EOL;
 
