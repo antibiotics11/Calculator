@@ -21,7 +21,6 @@
 				}
 			}
 			
-			// result를 일단 0으로 설정
 			$result = \Calculator\Binary::dec_to_bin(0);
 			
 			for ($k = 0; $k <= __MAXBIT__; $k++) {

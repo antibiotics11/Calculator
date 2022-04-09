@@ -58,7 +58,7 @@
 					
 					$result = \Calculator\Calculation\Multiplication::multiply($num1, $num2);
 				
-				} else if (expression[$i] == chr(47)) {
+				} else if ($expression[$i] == chr(47)) {
 					
 					$result = \Calculator\Calculation\Division::divide($num1, $num2);
 					
