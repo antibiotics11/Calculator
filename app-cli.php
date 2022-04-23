@@ -23,7 +23,7 @@
 			// "exit" 입력될때까지 무한루프
 			while (true) {
 				
-				$expression = readline(PHP_EOL." >> ");
+				$expression = readline(" >> ");
 				
 				if (strtolower($expression) == "exit") break;
 				if (empty($expression)) continue;
