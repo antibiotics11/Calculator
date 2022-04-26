@@ -106,7 +106,7 @@
 		
 		public function get_result(): int {
 			
-			return $this->result;
+			return (int)$this->result;
 			
 		}
 		

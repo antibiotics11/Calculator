@@ -1,6 +1,6 @@
 <?php
 	namespace Calculator;
-	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
+	if (!defined("__MAXBIT__")) define("__MAXBIT__", 8);
 	
 	class Stack {
 		
@@ -30,7 +30,8 @@
 		public function peek(): string {
 			
 			return ($this->stack[$this->top] == NULL) ? chr(32) : $this->stack[$this->top];
-			
+			//return $this->stack[$this->top];
+
 		}
 		
 

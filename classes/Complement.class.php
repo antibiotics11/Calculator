@@ -1,6 +1,6 @@
 <?php
 	namespace Calculator;
-	if (!defined(__MAXBIT__)) define("__MAXBIT__", 8);
+	if (!defined("__MAXBIT__")) define("__MAXBIT__", 8);
 	
 	class Complement {
 		
